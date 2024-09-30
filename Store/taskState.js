@@ -19,7 +19,13 @@ set((state)=>{
     })
     return{tasks:updatedTasks}
 })
-   }
+   },
+    // Method to delete task
+    removeTask:(id) =>{
+      set((state)=>{
+        return{tasks:state.tasks.filter((task)=>task.id!==id)}
+      })
+    }
 
 }))
 

@@ -4,7 +4,7 @@ import { useTaskStore } from "../../Store/taskState"
 export default function AddTask() {
  
     const [title,setTitle]=useState("")
-    const {addTask ,tasks} = useTaskStore()
+    const {addTask ,tasks ,removeTask } = useTaskStore()
     const addTaskHandler =() =>{
         addTask(title)
     }
@@ -32,8 +32,10 @@ export default function AddTask() {
     <ul className="divide-y divide-gray-200 px-4">
         {
             tasks.map((task) => (
+<div key={task.id}  className="flex justify-between items-center ">
+   
 
-                <li className="py-4" key={task.id} >
+                <li className="py-4"  >
                 <div className="flex items-center">
                     <input id={`todo-${task.id}`} 
                   name={`todo-${task.id}`} type="checkbox" onChange={()=>{CheckTask(task.id)}} checked={task.completed}
@@ -44,7 +46,8 @@ export default function AddTask() {
                     </label>
                 </div>
             </li>
-
+            <div className="text-red-500 cursor-pointer " onClick={()=>removeTask(task.id)}>delete</div>
+            </div>
             ))
       
         }
